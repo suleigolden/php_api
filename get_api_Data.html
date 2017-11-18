@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Call Api Data</title>
+<script type="text/javascript">
+	 function send_request(){
+            var hr = new XMLHttpRequest();
+            var results = '';
+            hr.open("GET", "api.php?ClientRequest=getAllUsers", true);
+            hr.setRequestHeader("Content-type", "application/json");
+            hr.onreadystatechange = function() {
+                if(hr.readyState == 4 && hr.status == 200) {
+                    var data = JSON.parse(hr.responseText);
+                    console.log(data);
+                     if(hr.readyState == 4){
+                     	 for(var obj in data){
+                        results += "Email: "+data[obj].email+" ";
+                        console.log(results);
+                      }
+                     	
+                     }else{
+                     console.log("Error Requesting.....");
+                     }
+                    
+                }
+            }
+            hr.send(null);
+            console.log("Requesting Data...");
+        }
+
+send_request();
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
